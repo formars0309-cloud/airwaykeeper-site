@@ -84,19 +84,16 @@ footer.foot .small a{color:#fff;text-decoration:underline;text-underline-offset:
 
 
 /* ---------- 대문(공개) ---------- */
-.gate{position:relative;overflow:hidden;color:#fff;min-height:calc(100vh - 68px);display:flex;align-items:center;
+.gate{position:relative;overflow:hidden;color:#fff;min-height:calc(100vh - 68px);display:flex;flex-direction:column;justify-content:center;align-items:stretch;
   background:radial-gradient(1200px 500px at 85% -10%,#1f6a8a 0,transparent 60%),linear-gradient(160deg,var(--navy) 0,var(--navy-900) 100%)}
-.gate .wf{position:absolute;left:0;width:100%;height:var(--h);pointer-events:none}
-.wfa{top:14px}.wfb{bottom:10px}.wfm{display:none;left:50%;bottom:0;min-width:760px;transform:translateX(-50%)}
-.wf .g path{stroke:#7fd1c7;stroke-width:.8;opacity:.14}
-.wf .p1{opacity:.46;filter:drop-shadow(0 0 3px rgba(191,230,255,.5))}.wf .p2{opacity:.52;filter:drop-shadow(0 0 3px rgba(127,209,199,.5))}
-/* 훑으며 그려지는 선: 머리가 끝에 닿은 뒤 꼬리가 지워진다(8초 루프). 빛점은 머리를 따라간다. */
-.sweep{stroke-dasharray:62 100;animation:sw 8s linear infinite;animation-delay:-3.5s}
+.gate .wf{display:block;flex:none;width:100%;height:160px;margin-top:8px;pointer-events:none}
+.wf .p1{opacity:.62;filter:drop-shadow(0 0 3px rgba(230,201,130,.35))}.wf .p2{opacity:.7;filter:drop-shadow(0 0 3px rgba(230,201,130,.35))}
+/* 훑으며 그려지는 선: 머리가 끝에 닿은 뒤 꼬리가 지워진다(32초 루프). 빛점은 머리를 따라간다. */
+.sweep{stroke-dasharray:62 100;animation:sw 32s linear infinite;animation-delay:-14s}
 @keyframes sw{from{stroke-dashoffset:62}to{stroke-dashoffset:-100}}
-.dot{offset-distance:0%;animation:mv 8s linear infinite;animation-delay:-3.5s;opacity:.75}
-.dot.d1{fill:#e8f7ff;filter:drop-shadow(0 0 4px rgba(232,247,255,.7))}.dot.d2{fill:#b5f5ea;filter:drop-shadow(0 0 4px rgba(181,245,234,.7))}
-@keyframes mv{0%{offset-distance:0%;opacity:.75}61.7%{offset-distance:100%;opacity:.75}62.5%,100%{offset-distance:100%;opacity:0}}
-@media (max-width:720px){.wfa,.wfb{display:none}.wfm{display:block}}
+.dot{offset-distance:0%;animation:mv 32s linear infinite;animation-delay:-14s;opacity:.8;fill:#f3dfaa;filter:drop-shadow(0 0 4px rgba(243,223,170,.7))}
+@keyframes mv{0%{offset-distance:0%;opacity:.8}61.7%{offset-distance:100%;opacity:.8}62.5%,100%{offset-distance:100%;opacity:0}}
+@media (max-width:720px){.gate .wf{height:112px}}
 @media (prefers-reduced-motion:reduce){.wf *{animation:none!important}.sweep{stroke-dasharray:none}.dot{display:none}}
 .gate .wrap{position:relative;width:100%;box-sizing:border-box;padding-top:48px;padding-bottom:48px;text-align:center}
 .gate h1{margin:0 auto;font-weight:700;letter-spacing:-.03em;line-height:1.15}
