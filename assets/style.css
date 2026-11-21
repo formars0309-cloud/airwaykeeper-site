@@ -114,11 +114,6 @@ main.home+footer.foot{margin-top:0}
 .idx .no{font-family:var(--serif);font-weight:600;font-size:22px;line-height:1.05;color:var(--navy)}
 .idx .t{display:block;font-size:15px;font-weight:600;line-height:1.45;letter-spacing:-.01em}
 .idx a:hover .t{text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
-.idx .m{display:block;margin-top:4px;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.rail .more{display:flex;justify-content:flex-end;margin-top:14px}
-.rail .more a{font-size:15px;font-weight:700;color:var(--navy);text-decoration:none;white-space:nowrap}
-.rail .more a:hover{text-decoration:underline;text-underline-offset:4px}
-.rail .note{margin-top:10px;font-size:13px;line-height:1.6;color:var(--muted)}
 
 /* ---------- 시안 빌드(DRAFT = True)의 첫 화면·강의·자료실 뼈대 ---------- */
 /* ---------- 첫 화면 ---------- */
