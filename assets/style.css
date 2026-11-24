@@ -378,6 +378,13 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
 .cite a{color:var(--navy);text-decoration:none;font-weight:600}
 .cite a:hover{text-decoration:underline}
 .article.law .prose a[rel~="noreferrer"]{word-break:break-all}
+/* 체크리스트(2026-11-23): 본문 바로 아래 목록은 ☐ 칸을 맨 앞에 두는 점검 항목이다. 글머리 점 대신 내어쓰기로 줄을 맞춘다. */
+.checklist .prose>ul{list-style:none;padding-left:0}
+.checklist .prose>ul>li{padding-left:1.5em;text-indent:-1.5em}
+.checklist .prose>ul>li+li{margin-top:.55em}
+.checklist .prose>ul ul{text-indent:0}
+/* 검수 1-1: 내어쓰기(text-indent)는 inline-block인 근거 표시와 근거 번호 안으로 상속되어 ☐ 칸과 겹치므로 안에서는 끈다(화면·인쇄 공통). */
+.checklist .prose>ul>li .tag,.checklist .prose>ul>li .cite{text-indent:0}
 
 /* ---------- 자료실·양식(시안) ---------- */
 .intro{max-width:46em;margin-bottom:28px}
@@ -480,6 +487,9 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
   .prose blockquote.point{padding:16px}
   .howto{padding:16px}
   .prose th,.prose td{min-width:110px;padding:10px 12px 10px 0;font-size:15px}
+  /* 점검표 용량 표: 글이 긴 두 칸을 좁은 화면에서 넓힌다. 셋째 칸 머리가 화면 끝에 걸려 옆으로 밀 수 있음이 보이게 한다(근거 표는 #sources 규칙이 이긴다) */
+  .checklist .prose td:nth-child(2){min-width:200px}
+  .checklist .prose td:nth-child(3){min-width:180px}
   .lessons a{gap:12px;padding:14px 0}
   .lessons .st{width:22px;font-size:21px}
   .law-list .t{font-size:16px}
@@ -492,7 +502,7 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
 
 /* 인쇄: 화면 장식을 빼고 본문·양식만 남긴다. 양식은 한 장씩 새 쪽에서 시작한다. */
 @media print{
-  @page{margin:10mm 12mm}
+  @page{size:A4;margin:10mm 12mm}
   body{background:#fff;font-size:10.5pt;line-height:1.5;color:#000}
   .draft,.top,.foot,.side,.crumb,.pn,.rel,.fhead,.lhead .chprog,.lhead>.btn,.list-h,.lessons{display:none!important}
   .layout{display:block}
@@ -501,6 +511,7 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
   .prose h2{break-after:avoid}
   .table-wrap{overflow:visible;border:0}
   .prose th,.prose td{border:1px solid #888;min-width:0;padding:5px 7px}
+  .prose tbody tr:last-child td{border-bottom:1px solid #888}
   .form-sheet{font-size:9.5pt;line-height:1.35}
   .form-sheet>*+*{margin-top:.5em}
   .form-sheet h2{font-size:15pt}
@@ -513,6 +524,18 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
   .all-forms{display:block}
   .all-forms .form-sheet+.form-sheet{break-before:page}
   .src{box-shadow:none;border:1px solid #999;background:#fff;color:#000}
+  .lhead{border-bottom:2px solid #000;margin:0 0 10pt;padding-bottom:6pt}
+  .lhead h1{font-size:17pt}
+  .howto{background:#fff;border:1px solid #888;padding:6pt 9pt;font-size:9.5pt}
+  .checklist .prose{font-size:10pt}
+  .checklist .prose h2{font-size:12.5pt;margin-top:12pt;border-top:1px solid #000;padding-top:4pt}
+  .checklist .prose>ul>li{break-inside:avoid;margin-top:3pt}
+  .checklist .prose table{font-size:9pt}
+  /* 검수 1-4 지적 12: ASRA LAST 대응 요점(머리 문단과 번호 1–6)을 한 쪽에 모은다 */
+  .checklist .prose>ol{break-inside:avoid}
+  .checklist .prose>p:has(+ol){break-after:avoid}
+  .tag{color:#000!important;background:none!important;border:0!important;padding:0!important}
+  .credit{font-size:8.5pt}
 }
 /* 근거 표기 설명(소개·시안 첫 화면) */
 .labels{list-style:none;padding-left:0;margin:12px 0}
