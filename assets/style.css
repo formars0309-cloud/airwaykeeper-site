@@ -487,9 +487,15 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
   .prose blockquote.point{padding:16px}
   .howto{padding:16px}
   .prose th,.prose td{min-width:110px;padding:10px 12px 10px 0;font-size:15px}
-  /* 점검표 용량 표: 글이 긴 두 칸을 좁은 화면에서 넓힌다. 셋째 칸 머리가 화면 끝에 걸려 옆으로 밀 수 있음이 보이게 한다(근거 표는 #sources 규칙이 이긴다) */
-  .checklist .prose td:nth-child(2){min-width:200px}
-  .checklist .prose td:nth-child(3){min-width:180px}
+  /* 점검표 표(용량 비교·근거): 좁은 화면에서는 행마다 카드로 쌓는다. 첫 칸이 제목, 나머지는 data-label 이름표 */
+  .checklist .prose .table-wrap{border-top:0;border-bottom:0;overflow:visible}
+  .checklist .prose table,.checklist .prose tbody,.checklist .prose tr,.checklist .prose td{display:block;width:auto}
+  .checklist .prose thead{display:none}
+  .checklist .prose tr{border:1px solid var(--rule);padding:14px 16px 6px;margin-top:12px;background:#fff}
+  .checklist .prose td,.checklist .prose td:first-child{min-width:0;padding:0 0 10px;border:0;font-size:15px;overflow-wrap:anywhere}
+  .checklist .prose td:first-child{font-size:17px;font-weight:700;padding-bottom:8px}
+  .checklist .prose td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:2px}
+  .checklist .prose #sources~.table-wrap td{min-width:0}
   .lessons a{gap:12px;padding:14px 0}
   .lessons .st{width:22px;font-size:21px}
   .law-list .t{font-size:16px}
@@ -532,8 +538,8 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
   .checklist .prose>ul>li{break-inside:avoid;margin-top:3pt}
   .checklist .prose table{font-size:9pt}
   /* 검수 1-4 지적 12: ASRA LAST 대응 요점(머리 문단과 번호 1–6)을 한 쪽에 모은다 */
-  .checklist .prose>ol{break-inside:avoid}
-  .checklist .prose>p:has(+ol){break-after:avoid}
+  .checklist .prose ol{break-inside:avoid}
+  .checklist .prose p:has(+ol){break-after:avoid}
   .tag{color:#000!important;background:none!important;border:0!important;padding:0!important}
   .credit{font-size:8.5pt}
 }
@@ -541,3 +547,45 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
 .labels{list-style:none;padding-left:0;margin:12px 0}
 .labels li{line-height:1.6;display:grid;grid-template-columns:auto 1fr;gap:.4em;align-items:baseline}
 .panel>.labels+p{margin-top:0}
+
+/* 체크리스트: 절 접기·핵심 한 줄·근거 숨김(2026-11-24) */
+.ev-off .cite,.ev-off .ev,.ev-off .evc{display:none!important}
+.btn-ev{margin:8px 0 0 8px;background:#fff;color:var(--navy);border:1px solid var(--rule)}
+.lhead>.btnrow{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-start}
+.checklist .prose>ul.ck{list-style:none;padding:0;margin:14px 0 0}
+.checklist .prose ul.ck>li{list-style:none;position:relative;padding-left:2.1em;text-indent:0;margin-top:0;padding-top:16px;padding-bottom:14px;border-top:1px solid var(--line)}
+.checklist .prose ul.ck>li:first-child{border-top:0}
+.checklist .prose ul.ck .bx{position:absolute;left:0;top:16px}
+.checklist .prose ul.ck>li>strong{display:block;margin-bottom:4px}
+.checklist .prose ul.ck .core{display:block;font-weight:700;color:var(--ink);line-height:1.6}
+.checklist .prose ul.ck .more{margin-top:8px}
+details.more>summary{list-style:none;cursor:pointer;display:inline-block;font-size:14.5px;color:var(--navy);font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+details.more>summary::-webkit-details-marker{display:none}
+details.more>summary .c{display:none}details.more[open]>summary .o{display:none}details.more[open]>summary .c{display:inline}
+details.more .full{margin-top:8px;padding:12px 14px;background:var(--paper2);font-size:15.5px;line-height:1.7;color:#35434b;text-indent:0}
+details.more.blk{display:block;margin:14px 0}
+details.more.blk .full{background:none;padding:0}
+details.sec{border-top:1px solid var(--rule);margin-top:0}
+details.sec>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary h2{margin:0!important;border:0!important;padding:0!important}
+details.sec>summary small{font-weight:400;color:var(--muted);font-size:14px;white-space:nowrap}
+details.sec>summary::after{content:"";flex:none;width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg) translateY(-3px);transition:transform .2s}
+details.sec[open]>summary::after{transform:rotate(-135deg)}
+.secnav{display:flex;justify-content:space-between;gap:12px;margin:28px 0 8px;padding-top:16px;border-top:1px solid var(--rule)}
+.secnav a{font-weight:600;color:var(--navy);text-decoration:none}
+.dlist{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--rule)}
+.dlist li{border-bottom:1px solid var(--line)}
+.dlist a{display:flex;justify-content:space-between;gap:12px;padding:16px 0;text-decoration:none;color:var(--ink);font-weight:600}
+.dlist small{color:var(--muted);font-weight:400;white-space:nowrap}
+@media (max-width:640px){
+.btn-ev{margin:8px 0 0}
+.checklist .prose{font-size:17px;line-height:1.75}
+.checklist .prose ul.ck .core{font-size:17.5px}
+}
+@media print{
+.btn-ev,.more>summary,.secnav{display:none!important}
+.cite,.ev,.evc{display:revert!important}
+.more .full{display:block!important;background:none;padding:0 0 0 1.5em}
+details.sec>summary::after{display:none}
+}
