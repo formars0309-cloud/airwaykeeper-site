@@ -32,3 +32,17 @@ window.addEventListener("afterprint", function () {
     if (art.dataset.wasoff === "1") art.classList.add("ev-off");
   });
 })();
+
+// 강의 영상: 재생을 누를 때에만 플레이어를 넣는다(그 전에는 외부 요청 없음).
+document.querySelectorAll(".video a[data-embed]").forEach(function (a) {
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
+    var f = document.createElement("iframe");
+    f.src = a.getAttribute("data-embed");
+    f.title = a.getAttribute("data-title");
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    a.replaceWith(f);
+  });
+});
