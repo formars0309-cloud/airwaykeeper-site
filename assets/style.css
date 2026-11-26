@@ -407,6 +407,42 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
 @media (max-width:900px){.lecture{grid-template-columns:minmax(0,1fr);gap:20px}.lt h2{font-size:23px}
   .video .pb{right:8px;bottom:8px;padding:6px 10px 6px 8px;font-size:13.5px}.video .pb .ic{width:15px;height:15px}}
 
+/* 강의 목록과 강의 한 편 쪽(2026-11-26 나눔). 목록은 한 편에 한 줄이고 줄 전체가 링크다. */
+.clist{list-style:none;margin:8px 0 0;padding:0;border-top:1px solid var(--rule)}
+.clist a{display:grid;grid-template-columns:248px minmax(0,1fr);gap:28px;align-items:center;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;color:inherit}
+.clist .th{display:block;aspect-ratio:16/9;border:1px solid var(--line);background:var(--paper2)}
+.clist .th img{width:100%;height:100%;object-fit:cover}
+.clist .tx,.clist .no,.clist .d,.clist .m{display:block}
+.clist .no{font-size:13.5px;font-weight:700;color:var(--muted)}
+.clist h2{font-size:21px;line-height:1.4;font-weight:700;color:var(--ink);margin-top:2px;letter-spacing:-.02em}
+.clist a:hover h2,.clist a:focus-visible h2{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.clist .d{margin-top:6px;color:var(--body);font-size:15.5px;line-height:1.6}
+.clist .m{margin-top:6px;color:var(--muted);font-size:14px}
+.soon{margin-top:18px;color:var(--muted);font-size:15px}
+.soon b{color:var(--ink);font-weight:600}
+.lv{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:36px;align-items:start;margin-top:8px}
+.ldesc{margin-top:18px;font-size:17px;line-height:1.75;max-width:760px}
+.chap h2{font-size:15px;font-weight:700;color:var(--ink);padding-bottom:8px;border-bottom:1px solid var(--rule)}
+.chap .hint{margin:8px 0 2px;font-size:13px;color:var(--muted)}
+.chap ol{list-style:none;margin:0;padding:0}
+.chap a{display:grid;grid-template-columns:44px minmax(0,1fr);gap:8px;padding:7px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink);font-size:14.5px;line-height:1.45}
+.chap a:hover span+span,.chap a:focus-visible span+span{text-decoration:underline;text-underline-offset:3px}
+.chap a[aria-current] span+span{font-weight:600}
+.chap .t{font-variant-numeric:tabular-nums;color:var(--navy);font-weight:600}
+.lbody{max-width:760px;margin-top:4px}
+.lbody .basis{margin-top:18px;padding-top:14px;border-top:1px solid var(--line)}
+.lbody .basis a{color:var(--navy);font-weight:600}
+.lbody .fine{margin-top:6px;color:var(--muted);font-size:14px}
+.pn .off{display:block;border-top:1px solid var(--rule);padding:14px 0 4px;text-align:right}
+.pn .off b{color:var(--muted)}
+@media (max-width:900px){
+  .clist a{grid-template-columns:128px minmax(0,1fr);gap:14px;align-items:start;padding:16px 0}
+  .clist .no{font-size:12.5px}.clist h2{font-size:16.5px;margin-top:0}
+  .clist .d{display:none}.clist .m{font-size:13px;margin-top:4px}
+  .lv{grid-template-columns:minmax(0,1fr);gap:24px}
+  .lbody{margin-top:0}
+}
+
 /* ---------- 자료실·양식(시안) ---------- */
 .intro{max-width:46em;margin-bottom:28px}
 .intro>p{font-size:17px}
@@ -521,7 +557,7 @@ section.sec{padding-top:96px;scroll-margin-top:110px}
   .lessons .st{width:22px;font-size:21px}
   .law-list .t{font-size:16px}
   .pn{grid-template-columns:1fr;gap:12px}
-  .pn .nx{text-align:left}
+  .pn .nx,.pn .off{text-align:left}
   .rel ul{grid-template-columns:1fr}
   .form-sheet{padding:24px 18px}
   footer.foot{margin-top:56px}

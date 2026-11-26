@@ -33,16 +33,42 @@ window.addEventListener("afterprint", function () {
   });
 })();
 
-// 강의 영상: 재생을 누를 때에만 플레이어를 넣는다(그 전에는 외부 요청 없음).
-document.querySelectorAll(".video a[data-embed]").forEach(function (a) {
-  a.addEventListener("click", function (e) {
-    e.preventDefault();
-    var f = document.createElement("iframe");
-    f.src = a.getAttribute("data-embed");
+// 강의 영상: 재생 단추나 차례의 시간을 누를 때에만 플레이어를 넣는다(그 전에는 외부 요청 없음).
+// 차례의 시간은 data-start(초)를 embed 주소의 start로 넘겨 그 시각부터 재생한다. 링크라서 키보드(Enter)로도 누를 수 있다.
+function playLecture(box, start) {
+  var a = box.querySelector("a[data-embed]"), f = box.querySelector("iframe");
+  var base = a ? a.getAttribute("data-embed") : box.getAttribute("data-embed");
+  var src = base + (start ? "&start=" + start : "");
+  if (!f) {
+    box.setAttribute("data-embed", base);
+    f = document.createElement("iframe");
     f.title = a.getAttribute("data-title");
     f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
     f.allowFullscreen = true;
     f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.src = src;
     a.replaceWith(f);
+  } else {
+    f.src = src;
+  }
+  return f;
+}
+document.querySelectorAll(".video a[data-embed]").forEach(function (a) {
+  var box = a.parentNode;
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
+    playLecture(box, 0);
+  });
+});
+document.querySelectorAll(".chap a[data-start]").forEach(function (a) {
+  var box = document.querySelector(".lmain .video");
+  if (!box) return;
+  a.addEventListener("click", function (e) {
+    e.preventDefault();
+    var f = playLecture(box, parseInt(a.getAttribute("data-start"), 10) || 0);
+    box.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    f.focus();
+    document.querySelectorAll(".chap a[aria-current]").forEach(function (x) { x.removeAttribute("aria-current"); });
+    a.setAttribute("aria-current", "true");
   });
 });
